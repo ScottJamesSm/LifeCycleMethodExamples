@@ -1,17 +1,41 @@
 package com.example.scottsmith.lifecyclemethodexample;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+
+    private Button newActivityButton;
+    private Button finishProgramButton;
+
+    private Intent newActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toast.makeText(this, "onText", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "onCreate", Toast.LENGTH_LONG).show();
+
+        newActivityButton = findViewById(R.id.new_activity_button);
+        finishProgramButton = findViewById(R.id.finish_activity_button);
+
+        newActivity = new Intent(this, SecoundActivity.class);
+
+        setListeners();
+    }
+
+    private void setListeners() {
+        newActivityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(newActivity);
+            }
+        });
     }
 
     @Override
